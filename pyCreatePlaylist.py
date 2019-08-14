@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Encoding: UTF-8
 
@@ -6,16 +6,21 @@
 import sys, getopt, os
 
 # import modules from file modules.py
-from modules import (onError, usage, outFile, outFileExtension, 
-                     checkOutFilePath, inDirCheck)
+from modules import (onError, usage, outFile, outFileExtension, videoTypes, audioTypes, 
+                     checkOutFilePath, inDirCheck, findFiles, createPlaylist)
+
 
 # handle options and arguments passed to script
 try:
     myopts, args = getopt.getopt(sys.argv[1:],
-                                 'o:i:rvh',
+                                 'o:i:e:msravh',
                                  ['outfile=', 
-                                  'indir=', 
-                                  'recursive'
+                                  'indir=',
+                                  'extension=',
+                                  'movies',
+                                  'sound',  
+                                  'recursive', 
+                                  'absolute'
                                   'verbose', 'help'])
 
 except getopt.GetoptError as e:
@@ -33,6 +38,13 @@ checkInDir = False
 
 recursive = False
 
+findVideo = False
+findAudio = False
+extension = ""
+extensionList = []
+
+absolutePath = False
+
 verbose = False
     
 # interpret options and arguments
@@ -44,15 +56,23 @@ for option, argument in myopts:
         inDir = argument
         inDir = os.path.abspath(inDir)
         checkInDir = True
+    elif option in ('-e', '--extension'):
+        extension = argument
     elif option in ('-r', '--recursive'):
         recursive = True
+    elif option in ('-m', '--movies'):
+        findVideo = True
+    elif option in ('-s', '--sound'):
+        findAudio = True
+    elif option in ('-a', '--absolute'):
+        absolutePath = True
     elif option in ('-v', '--verbose'):  # verbose output
         verbose = True
     elif option in ('-h', '--help'):  # display help text
         usage(0)
     
 # outfile    
-outFilePath = checkOutFilePath(outFilePath, verbose) # check all about the outfile path
+outDir, outFilePath, append = checkOutFilePath(outFilePath, verbose) # check all about the outfile path
 
 # indir
 if checkInDir:
@@ -61,9 +81,24 @@ if checkInDir:
             print("+++ %s\n    is a directory" % inDir)
     else:
         onError(6, "%s\nis not a directory" % inDir)
-
-if recursive:
-    print("\nScanning directory:\n%s\nrecursively..." % inDir)
-else:
-    print("\nScanning directory:\n%s ..." % inDir)
+        
+# what to look for
+if findVideo:
+    extensionList.extend(videoTypes)
+if findAudio:
+    extensionList.extend(audioTypes)
+if extension:
+    extension = extension.split(',')
+    extensionList.extend(extension)
     
+files = findFiles(inDir, recursive, extensionList, verbose)
+
+createPlaylist(files, outDir, outFilePath, absolutePath, append, verbose)
+
+
+
+
+
+
+
+
