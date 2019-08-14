@@ -78,7 +78,7 @@ def checkOutFilePath(outFilePath, verbose):
         print("+++ Outfile: %s" % os.path.basename(outFilePath))
     
     # handle file
-    append = True
+    append = False
     
     if not "." in (os.path.basename(outFilePath)): # check if there is a file extension
         if verbose:
@@ -105,6 +105,8 @@ def checkOutFilePath(outFilePath, verbose):
         elif questionAppend == "e" or questionAppend == "E":
             print("Exiting...")
             sys.exit(0)
+        else:
+            append = True
     
     print("\nPlaylist will be saved to:\n%s" % outFilePath)
     
@@ -170,7 +172,9 @@ def findFiles(inDir, recursive, extensionList, verbose):
     if len(fileList) == 0:
         onError(9, "No valid items found")      
     
-    return fileList.sort() # return sorted list
+    fileList.sort()
+
+    return fileList # return sorted list
     
 def createPlaylist(files, outDir, outFilePath, absolutePath, append, verbose):
     linesWritten = 0    
