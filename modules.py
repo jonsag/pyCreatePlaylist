@@ -36,7 +36,7 @@ def usage(exitCode):
     print("\nUsage:")
     print("%s <options>" % (sys.argv[0]))
     print("----------------------------------------")
-    print("    -o, --out")
+    print("    -o, --out <argument>")
     print("        Outfile. Either an existing or new directory, and/or a filename"
           "\n        If you do not give a directory, it will be '%s'"
           "\n        If you do not give a filename, it will be '%s.%s'"
@@ -44,12 +44,12 @@ def usage(exitCode):
           "\n        (changes can be made in configuration file 'config.ini')" 
           % (os.getcwd(), outFileName, outFileExtension, outFileExtension)
           )
-    print("    -i, --indir")
+    print("    -i, --indir <argument>")
     print("        Input directory that will be scanned"
           "\n        If you do not give a directory, '%s' will be searched"
           % os.getcwd()
           )
-    print("    -e, --extension")
+    print("    -e, --extension <argument>")
     print("        Comma separated list of extensions that will be searched for")
     print("    -m, --movies")
     print("        Video extensions will be searched for")
