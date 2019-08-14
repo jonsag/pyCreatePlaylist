@@ -34,9 +34,39 @@ def onError(errorCode, extra):
 # print usage information        
 def usage(exitCode):
     print("\nUsage:")
+    print("%s <options>" % (sys.argv[0]))
     print("----------------------------------------")
-    print("%s " % sys.argv[0])
-
+    print("    -o, --out")
+    print("        Outfile. Either an existing or new directory, and/or a filename"
+          "\n        If you do not give a directory, it will be '%s'"
+          "\n        If you do not give a filename, it will be '%s.%s'"
+          "\n        If you do not give a file extension, .'%s' will be added"
+          "\n        (changes can be made in configuration file 'config.ini')" 
+          % (os.getcwd(), outFileName, outFileExtension, outFileExtension)
+          )
+    print("    -i, --indir")
+    print("        Input directory that will be scanned"
+          "\n        If you do not give a directory, '%s' will be searched"
+          % os.getcwd()
+          )
+    print("    -e, --extension")
+    print("        Comma separated list of extensions that will be searched for")
+    print("    -m, --movies")
+    print("        Video extensions will be searched for")
+    #print(*videoTypes, sep=", ")
+    print("        (changes can be made in configuration file 'config.ini')")
+    print("    -s, --sound")
+    print("        Audio extensions will be searched for")
+    #print(*audioTypes, sep=", ")
+    print("        (changes can be made in configuration file 'config.ini')")
+    print("    -r, --recursive")
+    print("        Serch will be recursive")
+    print("    -a, --absolute")
+    print("        Playlist will contain absolute paths")
+    print("    -v, --verbose")
+    print("        Verbose output")
+    print("    -h, --help")
+    print("        Prints this")
     sys.exit(exitCode)
     
 def checkOutFilePath(outFilePath, verbose):    

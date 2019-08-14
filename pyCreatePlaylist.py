@@ -14,7 +14,7 @@ from modules import (onError, usage, outFile, videoTypes, audioTypes,
 try:
     myopts, args = getopt.getopt(sys.argv[1:],
                                  'o:i:e:msravh',
-                                 ['outfile=', 
+                                 ['out=', 
                                   'indir=',
                                   'extension=',
                                   'movies',
@@ -49,7 +49,7 @@ verbose = False
     
 # interpret options and arguments
 for option, argument in myopts:
-    if option in ('-o', '--outfile'):
+    if option in ('-o', '--out'):
         outFilePath = argument
         outFilePath = os.path.abspath(outFilePath)
     elif option in ('-i', '--indir'):
