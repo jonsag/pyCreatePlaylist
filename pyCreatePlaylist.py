@@ -6,7 +6,7 @@
 import sys, getopt, os
 
 # import modules from file modules.py
-from modules import (onError, usage, outFile, outFileExtension, videoTypes, audioTypes, 
+from modules import (onError, usage, outFile, videoTypes, audioTypes, 
                      checkOutFilePath, inDirCheck, findFiles, createPlaylist)
 
 
@@ -91,8 +91,10 @@ if extension:
     extension = extension.split(',')
     extensionList.extend(extension)
     
+# find files
 files = findFiles(inDir, recursive, extensionList, verbose)
 
+# create playlist
 createPlaylist(files, outDir, outFilePath, absolutePath, append, verbose)
 
 

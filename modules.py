@@ -3,7 +3,6 @@
 # Encoding: UTF-8
 
 import configparser, os, sys, glob
-from audioop import add
 
 config = configparser.ConfigParser()  # define config file
 config.read("%s/config.ini" % os.path.dirname(os.path.realpath(__file__)))  # read config file
@@ -171,7 +170,7 @@ def findFiles(inDir, recursive, extensionList, verbose):
     if len(fileList) == 0:
         onError(9, "No valid items found")      
     
-    return fileList
+    return fileList.sort() # return sorted list
     
 def createPlaylist(files, outDir, outFilePath, absolutePath, append, verbose):
     linesWritten = 0    
