@@ -1,6 +1,10 @@
 # pyCreatePlaylist
 Python script to create playlists from audio and/or video
 
+The script scans a directory, optionally recursive, searching for videos, and/or audio files. You can also state what file extensions you like to scan for.
+
+All valid files are put into a playlist with choosable name, extension and location. Paths can be set to absolute or relative.
+
 Usage:
 pyCreatePlaylist <options>
 ----------------------------------------
