@@ -6,7 +6,7 @@ pyCreatePlaylist <options>
 ----------------------------------------
     -o, --out <argument>
         Outfile. Either an existing or new directory, and/or a filename
-        If you do not give a directory, it will be 'current directory>'
+        If you do not give a directory, it will be '<current directory>'
         If you do not give a filename, it will be 'playlist.m3u'
         If you do not give a file extension, .'m3u' will be added
         (changes can be made in configuration file 'config.ini')
