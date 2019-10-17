@@ -12,7 +12,7 @@ pyCreatePlaylist <options>
         (changes can be made in configuration file 'config.ini')
     -i, --indir <argument>
         Input directory that will be scanned
-        If you do not give a directory, '/home/jon/Videos/isa tengblad' will be searched
+        If you do not give a directory, '<current directory>' will be searched
     -e, --extension <argument>
         Comma separated list of extensions that will be searched for
     -m, --movies
